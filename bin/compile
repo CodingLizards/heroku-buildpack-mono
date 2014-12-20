@@ -20,6 +20,7 @@ function conditional_download() {
     mkdir -p ${DESTINATION}
     echo "-----> Downloading ${DOWNLOAD_URL}"
     curl ${DOWNLOAD_URL} -s | tar xz -C ${DESTINATION}
+    echo "-----> Download finished"
   fi
 }
 
@@ -29,8 +30,6 @@ mkdir -p ${CACHE_DIR}
 
 MONO_CACHE_LOCATION=${CACHE_DIR}/$STACK/mono-${MONO_VERSION}
 conditional_download ${DEPENDENCY_S3_BUCKET_PATH}/mono-${MONO_VERSION}.tar.gz ${MONO_CACHE_LOCATION}
-
-echo "-----> Download finished"
 
 # Copy mono from cache to where we're building the slug
 cp -r "${MONO_CACHE_LOCATION}/mono" .
