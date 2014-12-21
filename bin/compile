@@ -35,9 +35,11 @@ conditional_download ${DEPENDENCY_S3_BUCKET_PATH}/mono-${MONO_VERSION}.tar.gz ${
 cp -r "${MONO_CACHE_LOCATION}/mono" .
 # Mono expects to be running out of /app
 ln -s "$BUILD_DIR/mono" /app
+# move folder one up
+mv gekkota-web/* .
 
 # find a solution file
-SLN=$(find . -maxdepth 3 -iname "*.sln")
+SLN=$(find . -maxdepth 1 -iname "*.sln")
 if [ $( echo "${SLN}" | wc -l ) -gt 1 ]; then
   echo "-----> Too many *.sln files"
   exit 1
@@ -47,8 +49,6 @@ if [ "${SLN}" == "" ]; then
   echo "-----> No *.sln file found"
   exit 1
 fi
-
-cd ./gekkota-web
 
 echo "-----> Compiling Mono application"
 
