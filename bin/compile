@@ -48,6 +48,8 @@ if [ "${SLN}" == "" ]; then
   exit 1
 fi
 
+cd .\gekkota-web
+
 echo "-----> Compiling Mono application"
 
 export PATH="/app/mono/bin:${PATH}"
