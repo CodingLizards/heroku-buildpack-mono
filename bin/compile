@@ -36,7 +36,8 @@ cp -r "${MONO_CACHE_LOCATION}/mono" .
 # Mono expects to be running out of /app
 ln -s "$BUILD_DIR/mono" /app
 # move folder one up
-mv gekkota-web/*.[^.]* .
+cp -rf ./gekkota-web .
+rm -rf ./gekkota-web
 
 # find a solution file
 SLN=$(find . -maxdepth 1 -iname "*.sln")
